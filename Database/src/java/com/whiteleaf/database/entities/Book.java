@@ -2,12 +2,14 @@ package com.whiteleaf.database.entities;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  *
  * @author ikilbou1
  */
 public class Book {
+    private int id;
     private String title;
     private int authorId;
     private String ISBN;
@@ -21,7 +23,10 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, int authorId, String ISBN, Date date, int publisherId, int pageCount, String summary, Blob illustration, int categoryId) {
+    public Book(int id, String title, int authorId, String ISBN, Date date,
+                int publisherId, int pageCount, String summary,
+                Blob illustration, int categoryId) {
+        this.id = id;
         this.title = title;
         this.authorId = authorId;
         this.ISBN = ISBN;
@@ -31,6 +36,14 @@ public class Book {
         this.summary = summary;
         this.illustration = illustration;
         this.categoryId = categoryId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -114,5 +127,63 @@ public class Book {
                 + this.date + ","
                 + this.pageCount + ","
                 + String.valueOf(this.publisherId) + ")";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + this.id;
+        hash = 79 * hash + Objects.hashCode(this.title);
+        hash = 79 * hash + this.authorId;
+        hash = 79 * hash + Objects.hashCode(this.ISBN);
+        hash = 79 * hash + Objects.hashCode(this.date);
+        hash = 79 * hash + this.publisherId;
+        hash = 79 * hash + this.pageCount;
+        hash = 79 * hash + Objects.hashCode(this.summary);
+        hash = 79 * hash + Objects.hashCode(this.illustration);
+        hash = 79 * hash + this.categoryId;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Book other = (Book) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (this.authorId != other.authorId) {
+            return false;
+        }
+        if (!Objects.equals(this.ISBN, other.ISBN)) {
+            return false;
+        }
+        if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
+        if (this.publisherId != other.publisherId) {
+            return false;
+        }
+        if (this.pageCount != other.pageCount) {
+            return false;
+        }
+        if (!Objects.equals(this.summary, other.summary)) {
+            return false;
+        }
+        if (!Objects.equals(this.illustration, other.illustration)) {
+            return false;
+        }
+        if (this.categoryId != other.categoryId) {
+            return false;
+        }
+        return true;
     }
 }

@@ -6,16 +6,18 @@ import java.util.Objects;
  *
  * @author ikilbou1
  */
-public class Category {
+public class UserAddress {
     private int id;
-    private String category;
+    private int userId;
+    private String address;
 
-    public Category() {
+    public UserAddress() {
     }
 
-    public Category(int id, String category) {
+    public UserAddress(int id, int userId, String address) {
         this.id = id;
-        this.category = category;
+        this.userId = userId;
+        this.address = address;
     }
 
     public int getId() {
@@ -26,24 +28,28 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    @Override
-    public String toString() {
-        return "CATEGORY (" + this.category + ")";
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 89 * hash + this.id;
-        hash = 89 * hash + Objects.hashCode(this.category);
+        hash = 29 * hash + this.id;
+        hash = 29 * hash + this.userId;
+        hash = 29 * hash + Objects.hashCode(this.address);
         return hash;
     }
 
@@ -55,11 +61,11 @@ public class Category {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Category other = (Category) obj;
+        final UserAddress other = (UserAddress) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.category, other.category)) {
+        if (!Objects.equals(this.address, other.address)) {
             return false;
         }
         return true;
