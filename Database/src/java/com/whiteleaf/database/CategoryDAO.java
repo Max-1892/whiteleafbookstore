@@ -26,7 +26,7 @@ public class CategoryDAO {
             rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    Category temp = new Category(rs.getString("category"));
+                    Category temp = new Category(rs.getInt("id"), rs.getString("category"));
                     categories.add(temp);
                 }
                 return categories;

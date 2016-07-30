@@ -1,35 +1,32 @@
 package com.whiteleaf.database;
 
-import com.whiteleaf.database.entities.Author;
+import com.whiteleaf.database.entities.User;
+import com.whiteleaf.database.entities.UserPassword;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author ikilbou1
  */
-public class AuthorDAO {
-    public static List<Author> getAuthors() {
-        List<Author> authors = new ArrayList<>();
+public class UserPasswordDAO {
+    public static UserPassword getUserPassword(User user) {
+        UserPassword password = null;
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT name FROM authors";
+        String query = "SELECT password FROM user_passwords WHERE user_id=?";
         try {
             ps = c.prepareStatement(query);
+            ps.setInt(1, user.getId());
             rs = ps.executeQuery();
             if (rs != null) {
-                while (rs.next()) {
-                    Author temp = new Author(rs.getInt("id"), rs.getString("name"));
-                    authors.add(temp);
-                }
-                return authors;
+                rs.next();
+                return new UserPassword(rs.getInt("id"), rs.getInt("user_id"), rs.getString("password"));
             }
             return null;
         } catch (SQLException e) {
@@ -39,15 +36,16 @@ public class AuthorDAO {
         }
     }
 
-    public static boolean addAuthor(Author author) {
+    public static boolean updatePassword(UserPassword password) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO AUTHORS (name) VALUES (?)";
+        String query = "UPDATE user_passwords SET password=? WHERE user_id=?";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, author.getName());
+            ps.setString(1, password.getPassword());
+            ps.setInt(1, password.getUserId());
             int result = ps.executeUpdate();
             if (result > 0)
                 return true;

@@ -26,7 +26,7 @@ public class PublisherDAO {
             rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    Publisher temp = new Publisher(rs.getString("name"));
+                    Publisher temp = new Publisher(rs.getInt("id"), rs.getString("name"));
                     publishers.add(temp);
                 }
                 return publishers;

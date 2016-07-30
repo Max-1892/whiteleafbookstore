@@ -1,6 +1,9 @@
 package com.whiteleaf.database;
 
+import com.whiteleaf.database.entities.Author;
 import com.whiteleaf.database.entities.Book;
+import com.whiteleaf.database.entities.Category;
+import com.whiteleaf.database.entities.Publisher;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
@@ -22,12 +25,15 @@ public class BooksDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT category FROM categories";
+        String query = "SELECT title, author_id, ISBN, publication_date,"
+                        + " publisher_id, page_count, summary, illustration,"
+                        + "category_id FROM books";
         try {
             ps = c.prepareStatement(query);
             rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
+                    int id = rs.getInt("id");
                     String title = rs.getString("title");
                     int authorId = rs.getInt("author_id");
                     String ISBN = rs.getString("ISBN");
@@ -37,9 +43,9 @@ public class BooksDAO {
                     String summary = rs.getString("summary");
                     Blob illustration = rs.getBlob("illustration");
                     int categoryId = rs.getInt("category_id");
-                    Book temp = new Book(title, authorId, ISBN, publicationDate,
-                                            publisherId, pageCount, summary,
-                                            illustration, categoryId);
+                    Book temp = new Book(id, title, authorId, ISBN,
+                                        publicationDate, publisherId, pageCount,
+                                        summary, illustration, categoryId);
                     books.add(temp);
                 }
                 return books;
@@ -52,14 +58,108 @@ public class BooksDAO {
         }
     }
 
-    
+    public static Book getBookFromId(int bookId) {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection c = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT title, author_id, ISBN, publication_date,"
+                    + " publisher_id, page_count, summary, illustration, category_id"
+                    + " FROM books"
+                    + " WHERE id=?";
+        try {
+            ps = c.prepareStatement(query);
+            ps.setInt(1, bookId);
+            rs = ps.executeQuery();
+            if (rs != null) {
+                rs.next();
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                int authorId = rs.getInt("author_id");
+                String ISBN = rs.getString("ISBN");
+                Date publicationDate = rs.getDate("publication_date");
+                int publisherId = rs.getInt("publisher_id");
+                int pageCount = rs.getInt("page_count");
+                String summary = rs.getString("summary");
+                Blob illustration = rs.getBlob("illustration");
+                int categoryId = rs.getInt("category_id");
+                return new Book(id, title, authorId, ISBN,
+                                    publicationDate, publisherId, pageCount,
+                                    summary, illustration, categoryId);
+            }
+            return null;
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            cp.freeConnection(c);
+        }
+    }
+
+    public static List<Book> getBooksFromAuthor(Author author) {
+        return getBooksWhere("author_id", author.getId());
+    }
+
+    public static List<Book> getBooksInCategory(Category category) {
+        return getBooksWhere("category_id", category.getId());
+    }
+
+    public static List<Book> getBooksFromPublisher(Publisher publisher) {
+        return getBooksWhere("publisher_id", publisher.getId());
+    }
+
+    public static List<Book> getBooksWhere(String columnName, int columnValue) {
+        List<Book> books = new ArrayList<>();
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection c = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT title, author_id, ISBN, publication_date,"
+                    + " publisher_id, page_count, summary, illustration, category_id"
+                    + " FROM books"
+                    + " WHERE ?=?";
+        try {
+            ps = c.prepareStatement(query);
+            ps.setString(1, columnName);
+            ps.setInt(2, columnValue);
+            rs = ps.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String title = rs.getString("title");
+                    int authorId = rs.getInt("author_id");
+                    String ISBN = rs.getString("ISBN");
+                    Date publicationDate = rs.getDate("publication_date");
+                    int publisherId = rs.getInt("publisher_id");
+                    int pageCount = rs.getInt("page_count");
+                    String summary = rs.getString("summary");
+                    Blob illustration = rs.getBlob("illustration");
+                    int categoryId = rs.getInt("category_id");
+                    Book temp = new Book(id, title, authorId, ISBN,
+                                        publicationDate, publisherId, pageCount,
+                                        summary, illustration, categoryId);
+                    books.add(temp);
+                }
+                return books;
+            }
+            return null;
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            cp.freeConnection(c);
+        }
+    }
+
     public static boolean addBook(Book book) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO BOOKS (title, author_id, isbn, publication_date, publisher_id, page_count, summary, illustration, category)"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO BOOKS (title, author_id, isbn,"
+                    + " publication_date, publisher_id, page_count, summary,"
+                    + " illustration, category)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = c.prepareStatement(query);
             ps.setString(1, book.getTitle());
