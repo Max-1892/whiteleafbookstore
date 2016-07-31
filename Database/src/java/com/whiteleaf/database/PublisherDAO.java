@@ -38,4 +38,27 @@ public class PublisherDAO {
             cp.freeConnection(c);
         }
     }
+
+    public static Publisher getPublisherFromId(int publisherId) {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection c = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM publishers WHERE id=?";
+        try {
+            ps = c.prepareStatement(query);
+            ps.setInt(1, publisherId);
+            rs = ps.executeQuery();
+            if (rs != null) {
+                rs.next();
+                return new Publisher(rs.getInt("id"), rs.getString("name"));
+            }
+            return null;
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            cp.freeConnection(c);
+        }
+    }
 }

@@ -20,7 +20,7 @@ public class CategoryDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT category FROM categories";
+        String query = "SELECT * FROM categories";
         try {
             ps = c.prepareStatement(query);
             rs = ps.executeQuery();
@@ -30,6 +30,29 @@ public class CategoryDAO {
                     categories.add(temp);
                 }
                 return categories;
+            }
+            return null;
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            cp.freeConnection(c);
+        }
+    }
+
+    public static Category getCategoryFromId(int categoryId) {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection c = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM categories WHERE id=?";
+        try {
+            ps = c.prepareStatement(query);
+            ps.setInt(1, categoryId);
+            rs = ps.executeQuery();
+            if (rs != null) {
+                rs.next();
+                return new Category(rs.getInt("id"), rs.getString("category"));
             }
             return null;
         } catch (SQLException e) {

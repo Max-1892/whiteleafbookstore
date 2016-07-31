@@ -33,7 +33,7 @@ public class UserAddressDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT address FROM ? WHERE user_id=?";
+        String query = "SELECT * FROM ? WHERE user_id=?";
         try {
             ps = c.prepareStatement(query);
             ps.setString(1, table);

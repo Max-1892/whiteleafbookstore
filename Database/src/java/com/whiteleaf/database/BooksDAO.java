@@ -25,9 +25,7 @@ public class BooksDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT title, author_id, ISBN, publication_date,"
-                        + " publisher_id, page_count, summary, illustration,"
-                        + "category_id FROM books";
+        String query = "SELECT * FROM books";
         try {
             ps = c.prepareStatement(query);
             rs = ps.executeQuery();
@@ -64,10 +62,7 @@ public class BooksDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT title, author_id, ISBN, publication_date,"
-                    + " publisher_id, page_count, summary, illustration, category_id"
-                    + " FROM books"
-                    + " WHERE id=?";
+        String query = "SELECT * FROM books WHERE id=?";
         try {
             ps = c.prepareStatement(query);
             ps.setInt(1, bookId);

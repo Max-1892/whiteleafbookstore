@@ -1,6 +1,6 @@
 package com.whiteleaf.database;
 
-import com.whiteleaf.database.entities.Author;
+import com.whiteleaf.database.entities.CreditCardProvider;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,24 +12,23 @@ import java.util.List;
  *
  * @author ikilbou1
  */
-public class AuthorDAO {
-    public static List<Author> getAuthors() {
-        List<Author> authors = new ArrayList<>();
+public class CreditCardProviderDAO {
+    private static List<CreditCardProvider> getCreditCardProviders() {
+        ArrayList<CreditCardProvider> providers = new ArrayList<>();
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM authors";
+        String query = "SELECT * FROM credit_card_providers";
         try {
             ps = c.prepareStatement(query);
             rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    Author temp = new Author(rs.getInt("id"), rs.getString("name"));
-                    authors.add(temp);
+                    providers.add(new CreditCardProvider(rs.getInt("id"), rs.getString("name")));
                 }
-                return authors;
+                return providers;
             }
             return null;
         } catch (SQLException e) {
@@ -39,44 +38,24 @@ public class AuthorDAO {
         }
     }
 
-    public static Author getAuthorFromId(int authorId) {
+    private static CreditCardProvider getCreditCardProviderById(int providerId) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM authors WHERE id=?";
+        String query = "SELECT * FROM credit_card_providers WHERE id=?";
         try {
             ps = c.prepareStatement(query);
-            ps.setInt(1, authorId);
+            ps.setInt(1, providerId);
             rs = ps.executeQuery();
             if (rs != null) {
                 rs.next();
-                return new Author(rs.getInt("id"), rs.getString("name"));
+                return new CreditCardProvider(rs.getInt("id"), rs.getString("name"));
             }
             return null;
         } catch (SQLException e) {
             return null;
-        } finally {
-            cp.freeConnection(c);
-        }
-    }
-
-    public static boolean addAuthor(Author author) {
-        ConnectionPool cp = ConnectionPool.getInstance();
-        Connection c = cp.getConnection();
-        PreparedStatement ps = null;
-
-        String query = "INSERT INTO AUTHORS (name) VALUES (?)";
-        try {
-            ps = c.prepareStatement(query);
-            ps.setString(1, author.getName());
-            int result = ps.executeUpdate();
-            if (result > 0)
-                return true;
-            return false;
-        } catch (SQLException e) {
-            return false;
         } finally {
             cp.freeConnection(c);
         }
