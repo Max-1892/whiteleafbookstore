@@ -8,7 +8,11 @@ import java.util.Objects;
  * @author ikilbou1
  */
 public class UserPassword implements Serializable {
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private int userId;
     private String password;
 

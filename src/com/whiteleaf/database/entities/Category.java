@@ -7,16 +7,20 @@ import java.util.Objects;
  *
  * @author ikilbou1
  */
-public class Publisher implements Serializable {
-    private int id;
-    private String publisher;
+public class Category implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
+    private String category;
 
-    public Publisher() {
+    public Category() {
     }
 
-    public Publisher(int id, String publisher) {
+    public Category(int id, String category) {
         this.id = id;
-        this.publisher = publisher;
+        this.category = category;
     }
 
     public int getId() {
@@ -27,24 +31,24 @@ public class Publisher implements Serializable {
         this.id = id;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public String getCategory() {
+        return category;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
-        return "PUBLISHER (" + this.publisher + ")";
+        return "CATEGORY (" + this.category + ")";
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 11 * hash + this.id;
-        hash = 11 * hash + Objects.hashCode(this.publisher);
+        int hash = 3;
+        hash = 89 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.category);
         return hash;
     }
 
@@ -56,14 +60,13 @@ public class Publisher implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Publisher other = (Publisher) obj;
+        final Category other = (Category) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.publisher, other.publisher)) {
+        if (!Objects.equals(this.category, other.category)) {
             return false;
         }
         return true;
     }
-    
 }

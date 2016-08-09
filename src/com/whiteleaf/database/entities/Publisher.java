@@ -7,16 +7,20 @@ import java.util.Objects;
  *
  * @author ikilbou1
  */
-public class Author implements Serializable {
-    private int id;
-    private String name;
+public class Publisher implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
+    private String publisher;
 
-    public Author() {
+    public Publisher() {
     }
 
-    public Author(int id, String name) {
+    public Publisher(int id, String publisher) {
         this.id = id;
-        this.name = name;
+        this.publisher = publisher;
     }
 
     public int getId() {
@@ -27,24 +31,24 @@ public class Author implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPublisher() {
+        return publisher;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 
     @Override
     public String toString() {
-        return "AUTHOR (" + this.name + ")";
+        return "PUBLISHER (" + this.publisher + ")";
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + this.id;
-        hash = 79 * hash + Objects.hashCode(this.name);
+        int hash = 5;
+        hash = 11 * hash + this.id;
+        hash = 11 * hash + Objects.hashCode(this.publisher);
         return hash;
     }
 
@@ -56,13 +60,14 @@ public class Author implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Author other = (Author) obj;
+        final Publisher other = (Publisher) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
+        if (!Objects.equals(this.publisher, other.publisher)) {
             return false;
         }
         return true;
     }
+    
 }

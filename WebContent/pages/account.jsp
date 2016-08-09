@@ -1,9 +1,9 @@
-<%@page import="com.whiteleaf.database.UserAddressDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <c:import url="/includes/header.html"/>
 
-<%@ page import="com.whiteleaf.database.entities.*" %>
+<%@ page import="com.whiteleaf.database.UserAddressDAO"%>
+<%@ page import="com.whiteleaf.database.entities.User" %>
 <% User user = (User) request.getAttribute("user");%>
 	<article>
 		<h1>Welcome <%= user.getName() %>></h1>
