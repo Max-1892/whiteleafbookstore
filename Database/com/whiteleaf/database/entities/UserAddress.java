@@ -1,23 +1,24 @@
 package com.whiteleaf.database.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author ikilbou1
  */
-public class UserPassword {
+public class UserAddress implements Serializable {
     private int id;
     private int userId;
-    private String password;
+    private String address;
 
-    public UserPassword() {
+    public UserAddress() {
     }
 
-    public UserPassword(int id, int userId, String password) {
+    public UserAddress(int id, int userId, String address) {
         this.id = id;
         this.userId = userId;
-        this.password = password;
+        this.address = address;
     }
 
     public int getId() {
@@ -36,20 +37,20 @@ public class UserPassword {
         this.userId = userId;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.id;
-        hash = 53 * hash + this.userId;
-        hash = 53 * hash + Objects.hashCode(this.password);
+        int hash = 3;
+        hash = 29 * hash + this.id;
+        hash = 29 * hash + this.userId;
+        hash = 29 * hash + Objects.hashCode(this.address);
         return hash;
     }
 
@@ -61,14 +62,11 @@ public class UserPassword {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final UserPassword other = (UserPassword) obj;
+        final UserAddress other = (UserAddress) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (this.userId != other.userId) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
+        if (!Objects.equals(this.address, other.address)) {
             return false;
         }
         return true;

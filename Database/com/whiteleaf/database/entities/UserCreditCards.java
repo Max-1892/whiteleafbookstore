@@ -1,5 +1,6 @@
 package com.whiteleaf.database.entities;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ import java.util.Objects;
  *
  * @author ikilbou1
  */
-public class UserCreditCards {
+public class UserCreditCards implements Serializable {
     private int id;
     private int userId;
     private int providerId;

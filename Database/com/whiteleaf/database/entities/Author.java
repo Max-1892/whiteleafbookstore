@@ -1,24 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.whiteleaf.database.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author ikilbou1
  */
-public class User {
+public class Author implements Serializable {
     private int id;
     private String name;
 
-    public User() {
+    public Author() {
     }
 
-    public User(int id, String name) {
+    public Author(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -40,15 +36,15 @@ public class User {
     }
 
     @Override
-    public String  toString() {
-        return "USER (" + this.name + ")";
+    public String toString() {
+        return "AUTHOR (" + this.name + ")";
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.id;
-        hash = 67 * hash + Objects.hashCode(this.name);
+        int hash = 3;
+        hash = 79 * hash + this.id;
+        hash = 79 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
@@ -60,7 +56,7 @@ public class User {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final Author other = (Author) obj;
         if (this.id != other.id) {
             return false;
         }

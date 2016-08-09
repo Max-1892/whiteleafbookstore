@@ -1,12 +1,13 @@
 package com.whiteleaf.database.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author ikilbou1
  */
-public class Orders {
+public class Orders implements Serializable {
     private int id;
     private int userId;
     private int providerId;

@@ -1,23 +1,24 @@
 package com.whiteleaf.database.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author ikilbou1
  */
-public class UserAddress {
+public class UserPassword implements Serializable {
     private int id;
     private int userId;
-    private String address;
+    private String password;
 
-    public UserAddress() {
+    public UserPassword() {
     }
 
-    public UserAddress(int id, int userId, String address) {
+    public UserPassword(int id, int userId, String password) {
         this.id = id;
         this.userId = userId;
-        this.address = address;
+        this.password = password;
     }
 
     public int getId() {
@@ -36,20 +37,20 @@ public class UserAddress {
         this.userId = userId;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + this.id;
-        hash = 29 * hash + this.userId;
-        hash = 29 * hash + Objects.hashCode(this.address);
+        int hash = 7;
+        hash = 53 * hash + this.id;
+        hash = 53 * hash + this.userId;
+        hash = 53 * hash + Objects.hashCode(this.password);
         return hash;
     }
 
@@ -61,11 +62,14 @@ public class UserAddress {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final UserAddress other = (UserAddress) obj;
+        final UserPassword other = (UserPassword) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.address, other.address)) {
+        if (this.userId != other.userId) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
             return false;
         }
         return true;

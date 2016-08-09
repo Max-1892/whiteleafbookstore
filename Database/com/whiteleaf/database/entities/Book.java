@@ -1,5 +1,7 @@
 package com.whiteleaf.database.entities;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.Date;
 import java.util.Objects;
@@ -8,7 +10,7 @@ import java.util.Objects;
  *
  * @author ikilbou1
  */
-public class Book {
+public class Book implements Serializable {
     private int id;
     private String title;
     private int authorId;
@@ -19,6 +21,7 @@ public class Book {
     private String summary;
     private Blob illustration;
     private int categoryId;
+    private BigDecimal price;
 
     public Book() {
     }
@@ -186,4 +189,12 @@ public class Book {
         }
         return true;
     }
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
 }

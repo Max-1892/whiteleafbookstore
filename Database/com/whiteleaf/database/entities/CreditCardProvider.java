@@ -1,21 +1,22 @@
 package com.whiteleaf.database.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author ikilbou1
  */
-public class Category {
+public class CreditCardProvider implements Serializable {
     private int id;
-    private String category;
+    private String name;
 
-    public Category() {
+    public CreditCardProvider() {
     }
 
-    public Category(int id, String category) {
+    public CreditCardProvider(int id, String name) {
         this.id = id;
-        this.category = category;
+        this.name = name;
     }
 
     public int getId() {
@@ -26,24 +27,19 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return "CATEGORY (" + this.category + ")";
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 89 * hash + this.id;
-        hash = 89 * hash + Objects.hashCode(this.category);
+        hash = 47 * hash + this.id;
+        hash = 47 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
@@ -55,11 +51,11 @@ public class Category {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Category other = (Category) obj;
+        final CreditCardProvider other = (CreditCardProvider) obj;
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.category, other.category)) {
+        if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         return true;
