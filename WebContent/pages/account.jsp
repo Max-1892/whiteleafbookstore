@@ -4,6 +4,7 @@
 
 <%@page import="com.whiteleaf.database.dao.UserAddressDAO, com.whiteleaf.database.entities.User" %>
 <% User user = (User) request.getAttribute("user");%>
+<% if (user != null) { %>
 	<article>
 		<h1>Welcome <%= user.getName() %>></h1>
 		<form action="/RegistrationServlet" method="get">
@@ -19,5 +20,10 @@
 		<input type="submit" value="Submit">
 		</form>
 	</article>
+<% } else { %>
+	<article>
+		<h1>Please register below</h1>
+	</article>
+<% } %>
 	</body>
 </html>
