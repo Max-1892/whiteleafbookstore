@@ -1,6 +1,6 @@
 package com.whiteleaf.database.test;
 
-import com.whiteleaf.database.CategoryDAO;
+import com.whiteleaf.database.dao.CategoryDAO;
 import com.whiteleaf.database.entities.Category;
 import java.io.IOException;
 import java.io.PrintWriter;

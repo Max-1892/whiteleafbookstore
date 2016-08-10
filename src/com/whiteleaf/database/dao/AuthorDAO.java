@@ -1,4 +1,4 @@
-package com.whiteleaf.database;
+package com.whiteleaf.database.dao;
 
 import com.whiteleaf.database.entities.Author;
 import java.sql.Connection;

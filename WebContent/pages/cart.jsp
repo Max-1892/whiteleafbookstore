@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<c:import url="/includes/header.html"/>
+<c:import url="../header.html"/>
 
 <%@ page import="com.whiteleaf.database.entities.*" %>
 
@@ -12,7 +12,7 @@
     <th>Amount</th>
   </tr>
 
-<%@ taglib uri="whiteleaf.tld" prefix="mma" %>
+<%@ taglib uri="../WEB-INF/whiteleaf.tld" prefix="mma" %>
 <mma:cart>
   <tr>
     <td>${quantity}</td>

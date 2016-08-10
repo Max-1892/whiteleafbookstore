@@ -7,6 +7,7 @@ import javax.servlet.http.*;
 import com.whiteleaf.database.entities.Book;
 import com.whiteleaf.database.entities.Cart;
 import com.whiteleaf.database.entities.LineItem;
+import com.whiteleaf.database.entities.ProductIO;
 
 public class CartServlet extends HttpServlet {
 

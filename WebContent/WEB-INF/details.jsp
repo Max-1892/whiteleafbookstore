@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="com.whiteleaf.database.BooksDAO"%>
-<%@page import="com.whiteleaf.database.AuthorDAO"%>
-<%@page import="com.whiteleaf.database.PublisherDAO"%>
-<%@page import="com.whiteleaf.database.CategoryDAO"%>
+<%@page import="com.whiteleaf.database.dao.BooksDAO"%>
+<%@page import="com.whiteleaf.database.dao.AuthorDAO"%>
+<%@page import="com.whiteleaf.database.dao.PublisherDAO"%>
+<%@page import="com.whiteleaf.database.dao.CategoryDAO"%>
 <c:import url="/includes/header.html"/>
 
 <%@ page import="com.whiteleaf.database.entities.*" %>

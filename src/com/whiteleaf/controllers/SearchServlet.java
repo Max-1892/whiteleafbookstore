@@ -1,14 +1,18 @@
 package com.whiteleaf.controllers;
 
 import java.io.IOException;
-import com.whiteleaf.database.ConnectionPool;
+
+import com.whiteleaf.database.dao.BooksDAO;
+import com.whiteleaf.database.dao.ConnectionPool;
 import com.whiteleaf.database.entities.Book;
+import com.whiteleaf.database.entities.DisplayBook;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -81,8 +85,8 @@ public class SearchServlet extends HttpServlet {
 					int pages = results.getInt("Pages");
 					String summary = results.getString("Summary");
 					String category = results.getString("Category_ID");
-					Book book = new Book(title, author, image, ISBN, price, year, publisher, pages, summary, category);
-					resultDisplay = resultDisplay + displayBook.displayBookResult(book);
+					//Book book = new Book(title, author, ISBN, price, new Date().setYear(year), publisher, pages, summary, image, category);
+					//resultDisplay = resultDisplay + DisplayBook.displayBookResult(book);
 				}
 				
 				request.setAttribute("results", resultDisplay);
@@ -112,8 +116,8 @@ public class SearchServlet extends HttpServlet {
 					int pages = results.getInt("Pages");
 					String summary = results.getString("Summary");
 					String category = results.getString("Category_ID");
-					Book book = new Book(title, author, image, ISBN, price, year, publisher, pages, summary, category);
-					resultDisplay = resultDisplay+ displayBook.displayBookResult(book);
+					//Book book = new Book(title, author, image, ISBN, price, year, publisher, pages, summary, category);
+					//resultDisplay = resultDisplay+ DisplayBook.displayBookResult(book);
 				}
 				
 				request.setAttribute("results", resultDisplay);
@@ -142,8 +146,8 @@ public class SearchServlet extends HttpServlet {
 					int pages = results.getInt("Pages");
 					String summary = results.getString("Summary");
 					String category = results.getString("Category_ID");
-					Book book = new Book(title, author, image, ISBN, price, year, publisher, pages, summary, category);
-					request.setAttribute("book", book);
+					//Book book = new Book(title, author, image, ISBN, price, year, publisher, pages, summary, category);
+					//request.setAttribute("book", book);
 				}
 				
 				

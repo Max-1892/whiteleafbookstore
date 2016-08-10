@@ -1,6 +1,6 @@
 package com.whiteleaf.database.test;
 
-import com.whiteleaf.database.PublisherDAO;
+import com.whiteleaf.database.dao.PublisherDAO;
 import com.whiteleaf.database.entities.Publisher;
 import java.io.IOException;
 import java.io.PrintWriter;
