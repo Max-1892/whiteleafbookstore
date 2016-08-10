@@ -4,18 +4,15 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.whiteleaf.database.dao.BooksDAO;
 import com.whiteleaf.database.entities.Book;
-import com.whiteleaf.database.entities.Cart;
-import com.whiteleaf.database.entities.LineItem;
-import com.whiteleaf.database.entities.ProductIO;
+import com.whiteleaf.util.Cart;
+import com.whiteleaf.util.LineItem;
 
 public class CartServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext sc = getServletContext();
         
         // get current action
@@ -51,8 +48,7 @@ public class CartServlet extends HttpServlet {
                 quantity = 1;
             }
 
-            String path = sc.getRealPath("/WEB-INF/books.txt");
-            Book book = ProductIO.getBook(productCode, path);
+            Book book = BooksDAO.getBookByISBN(productCode);
 
             LineItem lineItem = new LineItem();
             lineItem.setBook(book);

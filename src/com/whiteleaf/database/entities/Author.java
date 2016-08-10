@@ -8,11 +8,7 @@ import java.util.Objects;
  * @author ikilbou1
  */
 public class Author implements Serializable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int id;
+    private int id;
     private String name;
 
     public Author() {

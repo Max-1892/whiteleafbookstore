@@ -2,7 +2,6 @@ package com.whiteleaf.database.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -11,11 +10,7 @@ import java.util.Objects;
  * @author ikilbou1
  */
 public class Book implements Serializable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int id;
+    private int id;
     private String title;
     private int authorId;
     private String ISBN;
@@ -23,7 +18,7 @@ public class Book implements Serializable {
     private int publisherId;
     private int pageCount;
     private String summary;
-    private Blob illustration;
+    private String illustration;
     private int categoryId;
     private BigDecimal price;
 
@@ -32,7 +27,7 @@ public class Book implements Serializable {
 
     public Book(int id, String title, int authorId, String ISBN, Date date,
                 int publisherId, int pageCount, String summary,
-                Blob illustration, int categoryId) {
+                String illustration, int categoryId, BigDecimal price) {
         this.id = id;
         this.title = title;
         this.authorId = authorId;
@@ -43,6 +38,7 @@ public class Book implements Serializable {
         this.summary = summary;
         this.illustration = illustration;
         this.categoryId = categoryId;
+        this.price = price;
     }
 
     public int getId() {
@@ -109,11 +105,11 @@ public class Book implements Serializable {
         this.summary = summary;
     }
 
-    public Blob getIllustration() {
+    public String getIllustration() {
         return illustration;
     }
 
-    public void setIllustration(Blob illustration) {
+    public void setIllustration(String illustration) {
         this.illustration = illustration;
     }
 
@@ -194,11 +190,11 @@ public class Book implements Serializable {
         return true;
     }
 
-	public BigDecimal getPrice() {
-		return price;
-	}
+    public BigDecimal getPrice() {
+        return price;
+    }
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
-	}
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }

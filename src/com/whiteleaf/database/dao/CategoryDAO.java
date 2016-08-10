@@ -40,15 +40,24 @@ public class CategoryDAO {
     }
 
     public static Category getCategoryFromId(int categoryId) {
-        ConnectionPool cp = ConnectionPool.getInstance();
+        return getCategoryWhere("id", String.valueOf(categoryId));
+    }
+
+    public static Category getCategoryByName(String categoryName) {
+        return getCategoryWhere("category", categoryName);
+    }
+
+    public static Category getCategoryWhere(String columnName, String columnValue) {
+                ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM categories WHERE id=?";
+        String query = "SELECT * FROM categories WHERE ?=?";
         try {
             ps = c.prepareStatement(query);
-            ps.setInt(1, categoryId);
+            ps.setString(1, columnName);
+            ps.setString(2, columnValue);
             rs = ps.executeQuery();
             if (rs != null) {
                 rs.next();
