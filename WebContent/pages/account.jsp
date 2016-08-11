@@ -1,7 +1,8 @@
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<c:import url="../header.html"/>
+<c:import url="/includes/header.html"/>
 
+<<<<<<< HEAD
 <%@page import="com.whiteleaf.database.dao.UserAddressDAO, com.whiteleaf.database.entities.User" %>
 <% User user = (User) session.getAttribute("user"); %>
 <% if (user != null && user.isValid()) { %>

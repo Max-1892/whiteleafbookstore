@@ -1,0 +1,43 @@
+@CHARSET "ISO-8859-1";
+body{
+    text-size:2em;
+    font-family:"Century Gothic";
+}
+nav{
+    float:top;
+}
+
+nav li{
+    display:inline;
+    float: left;
+    display:block;
+    padding: 8px 16px;
+    text-decoration: none;
+    list-style-type: none;
+}
+section{
+
+}
+footer{
+    text-size:1em;
+
+}
+h1{
+    font-family:"Palatino Linotype"s;
+    size:7em;
+}
+header img{
+    float:top-left;
+    display:block;
+    display:inline;
+}
+header h1{
+    float:top-left;
+    display:block;
+    display:inline;
+}
+section{
+    float:top;
+    display:block;
+    display:inline;
+}

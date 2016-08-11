@@ -39,6 +39,29 @@ public class AuthorDAO {
         }
     }
 
+    public static Author getAuthorByName(String authorName) {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection c = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM authors WHERE name LIKE ?";
+        try {
+            ps = c.prepareStatement(query);
+            ps.setString(1, authorName);
+            rs = ps.executeQuery();
+            if (rs != null) {
+                rs.next();
+                return new Author(rs.getInt("id"), rs.getString("name"));
+            }
+            return null;
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            cp.freeConnection(c);
+        }
+    }
+
     public static Author getAuthorFromId(int authorId) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
