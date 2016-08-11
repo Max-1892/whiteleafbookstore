@@ -6,8 +6,8 @@ import javax.servlet.http.*;
 
 import com.whiteleaf.database.dao.BooksDAO;
 import com.whiteleaf.database.entities.Book;
-import com.whiteleaf.util.Cart;
-import com.whiteleaf.util.LineItem;
+import com.whiteleaf.database.entities.Cart;
+import com.whiteleaf.database.entities.LineItem;
 
 public class CartServlet extends HttpServlet {
 

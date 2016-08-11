@@ -2,8 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <c:import url="/includes/header.html"/>
 
-<%@ page import="beans.*" %>
-
 <h1>Your order has been completed.</h1>
 <table>
     <tr>

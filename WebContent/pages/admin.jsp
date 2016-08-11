@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <c:import url="/includes/header.html"/>
 
-<%@ page import="beans.*" %>
+<%@ page import="com.whiteleaf.database.entities.*" %>
 
     <article>
         <h1>Admin</h1>

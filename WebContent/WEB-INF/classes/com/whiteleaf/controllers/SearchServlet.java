@@ -19,8 +19,8 @@ import com.whiteleaf.database.dao.PublisherDAO;
 import com.whiteleaf.database.entities.Author;
 import com.whiteleaf.database.entities.Book;
 import com.whiteleaf.database.entities.Category;
+import com.whiteleaf.database.entities.DisplayBook;
 import com.whiteleaf.database.entities.Publisher;
-import com.whiteleaf.util.DisplayBook;
 
 /**
  * Servlet implementation class ResultsServlet
@@ -58,7 +58,7 @@ public class SearchServlet extends HttpServlet {
             for (Book book : books) {
                 Author author = AuthorDAO.getAuthorFromId(book.getAuthorId());
                 Publisher publisher = PublisherDAO.getPublisherFromId(book.getPublisherId());
-                String html = DisplayBook.displayBook(book, author, category, publisher);
+                String html = DisplayBook.displayBook(book);
                 resultDisplay = resultDisplay + html;
             }
             request.setAttribute("results", resultDisplay);
@@ -72,7 +72,7 @@ public class SearchServlet extends HttpServlet {
                 Author author = AuthorDAO.getAuthorFromId(book.getAuthorId());
                 Category category = CategoryDAO.getCategoryFromId(book.getCategoryId());
                 Publisher publisher = PublisherDAO.getPublisherFromId(book.getPublisherId());
-                String html = DisplayBook.displayBook(book, author, category, publisher);
+                String html = DisplayBook.displayBook(book);
                 resultDisplay = resultDisplay + html;
             }
             request.setAttribute("results", resultDisplay);
