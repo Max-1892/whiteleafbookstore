@@ -17,8 +17,8 @@ public class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
-    private String name;
+	private int id = -1;
+    private String name = "";
 
     public User() {
     }
@@ -73,5 +73,9 @@ public class User implements Serializable {
             return false;
         }
         return true;
+    }
+    
+    public boolean isValid() {
+    	return (id != -1) && (!name.equals(""));
     }
 }
