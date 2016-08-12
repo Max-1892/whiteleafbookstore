@@ -1,6 +1,6 @@
 package com.whiteleaf.database.dao;
 
-import com.whiteleaf.database.entities.User;
+import com.whiteleaf.database.entities.UserName;
 import com.whiteleaf.database.entities.UserAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,19 +14,19 @@ import java.util.List;
  * @author ikilbou1
  */
 public class UserAddressDAO {
-    public static List<UserAddress> getUserBillingAddress(User user) {
+    public static List<UserAddress> getUserBillingAddress(UserName user) {
         return getAddressList("user_billing_address", user);
     }
 
-    public static List<UserAddress> getUserEmailAddress(User user) {
+    public static List<UserAddress> getUserEmailAddress(UserName user) {
         return getAddressList("user_email_address", user);
     }
 
-    public static List<UserAddress> getUserShippingAddress(User user) {
+    public static List<UserAddress> getUserShippingAddress(UserName user) {
         return getAddressList("user_shipping_address", user);
     }
 
-    public static List<UserAddress> getAddressList(String table, User user) {
+    public static List<UserAddress> getAddressList(String table, UserName user) {
         List<UserAddress> addresses = new ArrayList<>();
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();

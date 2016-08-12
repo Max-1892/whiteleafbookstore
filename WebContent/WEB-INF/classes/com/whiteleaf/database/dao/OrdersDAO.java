@@ -1,7 +1,7 @@
 package com.whiteleaf.database.dao;
 
 import com.whiteleaf.database.entities.Orders;
-import com.whiteleaf.database.entities.User;
+import com.whiteleaf.database.entities.UserName;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author ikilbou1
  */
 public class OrdersDAO {
-    public static List<Orders> getUsersOrders(User user) {
+    public static List<Orders> getUsersOrders(UserName user) {
         ArrayList<Orders> orders = new ArrayList<>();
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();

@@ -10,12 +10,12 @@ import java.util.Objects;
 public class UserBookWishList implements Serializable {
     private int id;
     private Book book;
-    private User user;
+    private UserName user;
 
     public UserBookWishList() {
     }
 
-    public UserBookWishList(int id, Book book, User user) {
+    public UserBookWishList(int id, Book book, UserName user) {
         this.id = id;
         this.book = book;
         this.user = user;
@@ -37,11 +37,11 @@ public class UserBookWishList implements Serializable {
         this.book = book;
     }
 
-    public User getUser() {
+    public UserName getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserName user) {
         this.user = user;
     }
 

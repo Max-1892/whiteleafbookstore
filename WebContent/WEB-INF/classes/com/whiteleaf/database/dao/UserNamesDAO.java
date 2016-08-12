@@ -1,7 +1,5 @@
 package com.whiteleaf.database.dao;
 
-import com.whiteleaf.database.entities.Book;
-import com.whiteleaf.database.entities.UserBookWishList;
 import com.whiteleaf.database.entities.UserName;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,27 +12,26 @@ import java.util.List;
  *
  * @author ikilbou1
  */
-public class UserBookWishlistDAO {
-    public static List<UserBookWishList> getUsersWishList(UserName user) {
-        ArrayList<UserBookWishList> wishList = new ArrayList<>();
+public class UserNamesDAO {
+    public static List<UserName> getUserNames() {
+        List<UserName> userNames = new ArrayList<>();
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM user_book_wishlist WHERE user_id=?";
+        String query = "SELECT * FROM user_names";
         try {
             ps = c.prepareStatement(query);
-            ps.setInt(1, user.getId());
             rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
                     int id = rs.getInt("id");
-                    int bookId = rs.getInt("book_id");
-                    Book book = BooksDAO.getBookFromId(bookId);
-                    wishList.add(new UserBookWishList(id, book, user));
+                    String name = rs.getString("name");
+                    UserName temp = new UserName(id, name);
+                    userNames.add(temp);
                 }
-                return wishList;
+                return userNames;
             }
             return null;
         } catch (SQLException e) {
@@ -44,18 +41,16 @@ public class UserBookWishlistDAO {
         }
     }
 
-    public static boolean addBookToWishList(UserName user, Book book) {
+    public static boolean addUserName(UserName user) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
-        int result = 0;
 
-        String query = "INSERT INTO user_book_wishlist (user_id, book_id) VALUES (?, ?)";
+        String query = "INSERT INTO user_names (name) VALUES (?)";
         try {
             ps = c.prepareStatement(query);
-            ps.setInt(1, user.getId());
-            ps.setInt(2, book.getId());
-            result = ps.executeUpdate();
+            ps.setString(1, user.getName());
+            int result = ps.executeUpdate();
             if (result > 0)
                 return true;
             return false;

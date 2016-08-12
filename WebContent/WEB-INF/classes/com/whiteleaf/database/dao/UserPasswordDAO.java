@@ -1,6 +1,6 @@
 package com.whiteleaf.database.dao;
 
-import com.whiteleaf.database.entities.User;
+import com.whiteleaf.database.entities.UserName;
 import com.whiteleaf.database.entities.UserPassword;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * @author ikilbou1
  */
 public class UserPasswordDAO {
-    public static UserPassword getUserPassword(User user) {
+    public static UserPassword getUserPassword(UserName user) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;

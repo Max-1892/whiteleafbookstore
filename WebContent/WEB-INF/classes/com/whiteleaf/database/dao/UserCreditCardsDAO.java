@@ -1,7 +1,7 @@
 package com.whiteleaf.database.dao;
 
-import com.whiteleaf.database.entities.User;
 import com.whiteleaf.database.entities.UserCreditCards;
+import com.whiteleaf.database.entities.UserName;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author ikilbou1
  */
 public class UserCreditCardsDAO {
-    public static List<UserCreditCards> getUsersCreditCards(User user) {
+    public static List<UserCreditCards> getUsersCreditCards(UserName user) {
         ArrayList<UserCreditCards> creditCards = new ArrayList<>();
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
