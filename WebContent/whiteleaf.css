@@ -5,6 +5,7 @@ body{
 }
 nav{
 	float:top;
+	padding-bottom: 5%;
 }
 
 nav li{
@@ -40,4 +41,31 @@ section{
 	float:top;
 	display:block;
 	display:inline;
+}
+#error {
+        background-color: red;
+}
+.error {
+        background-color: #FBE3E4;
+        color: #8C2523;
+        text-align: center;
+        margin-left: 35%;
+        margin-right: 35%;
+        width: 30%;
+}
+article {
+        margin-left: 40%;
+        margin-right: 40%;
+        width: 40%;
+	
+}
+article h2 {
+        margin-left: -15%;
+        margin-right: -15%;
+        width: 50%;
+}
+input {
+	margin-bottom: 2%;
+	margin-left: 2%;
+	
 }

@@ -3,6 +3,7 @@ package com.whiteleaf.database.entities;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -103,4 +104,12 @@ public class UserCreditCards implements Serializable {
         }
         return true;
     }
+
+	public static boolean validateCreditCardNumber(String ccNum) {
+		return Pattern.matches("([0-9]{4}[-]?){4}", ccNum);
+	}
+
+	public static boolean validateCreditCardExpDate(String date) {
+		return Pattern.matches("^(0[1-9]|1[0-2])/?([0-9]{4}|[0-9]{2})$", date);
+	}
 }

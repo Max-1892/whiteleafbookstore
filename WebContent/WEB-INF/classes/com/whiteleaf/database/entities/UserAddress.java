@@ -2,6 +2,8 @@ package com.whiteleaf.database.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -70,5 +72,9 @@ public class UserAddress implements Serializable {
             return false;
         }
         return true;
+    }
+    
+    public static boolean validateZipcode(String zipcode) {
+    	 return Pattern.matches("[0-9]{5}", zipcode);
     }
 }

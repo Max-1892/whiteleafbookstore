@@ -21,7 +21,7 @@
 	</article>
 <% } else { %>
 	<article>
-		<h1>Please register <a href="registration.jsp">here</a> or login <a href="login.jsp">here</a></h1>
+		<h1>You aren't logged in! Please register <a href="registration.jsp">here</a> or login <a href="login.jsp">here</a></h1>
 	</article>
 <% } %>
 	</body>
