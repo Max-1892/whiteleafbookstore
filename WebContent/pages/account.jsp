@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<c:import url="/includes/header.html"/>
-
+<jsp:include page="header.html" />
 <%@page import="com.whiteleaf.database.dao.UserAddressDAO, com.whiteleaf.database.util.User" %>
 <% User user = (User) session.getAttribute("user"); %>
 <% if (user != null && !user.equals("")) { %>
@@ -20,7 +19,7 @@
 	</article>
 <% } else { %>
 	<article>
-		<h1>You aren't logged in! Please register <a href="registration.jsp">here</a> or login <a href="../login.html">here</a></h1>
+		<h3>You aren't logged in!<br> Please register <a href="registration.jsp">here</a> or login <a href="../login.html">here</a></h3>
 	</article>
 <% } %>
 	</body>

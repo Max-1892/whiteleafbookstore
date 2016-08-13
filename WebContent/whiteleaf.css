@@ -1,23 +1,30 @@
 @CHARSET "ISO-8859-1";
+html {
+	font-family:"Trebuchet MS";
+	background-color: #EEEBDC;
+}
 body{
 	text-size:2em;
-	font-family:"Century Gothic";
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
 }
-nav{
+nav {
 	float:top;
-	padding-bottom: 5%;
+	background-color: #000;
 }
 
 nav li{
 	display:inline;
-	float: left;
+	float: right;
 	display:block;
 	padding: 8px 16px;
     text-decoration: none;
     list-style-type: none;
 }
-section{
-
+#banner_logo {
+	padding-left: 2%;
+	float: left;
 }
 footer{
 	text-size:1em;
@@ -54,18 +61,52 @@ section{
         width: 30%;
 }
 article {
-        margin-left: 40%;
-        margin-right: 40%;
-        width: 40%;
-	
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
 }
-article h2 {
-        margin-left: -15%;
-        margin-right: -15%;
-        width: 50%;
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
 }
-input {
+
+nav.li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+nav li a:hover {
+    background-color: #333;
+}
+input#searchBar {
+	margin-top: 2%;
+	margin-left: 10%;
 	margin-bottom: 2%;
-	margin-left: 2%;
-	
+    width: 80%;
+}
+.registration_section {
+	margin-left: 30%;
+    text-align: left;
+}
+.registration_fields {
+	text-align: left;
+    margin-left: 35%;
+}
+.registration_fields input {
+	margin-top: 1%;
+	margin-bottom: 1;
+}
+#ccProviders {
+	margin-left: 4%;
 }
