@@ -14,6 +14,8 @@ import java.util.List;
  * @author ikilbou1
  */
 public class UserAddressDAO {
+	private static int id = 0;
+
     public static List<UserAddress> getUserBillingAddress(UserName user) {
         return getAddressList("user_billing_address", user);
     }
@@ -81,8 +83,10 @@ public class UserAddressDAO {
             ps.setString(2, address.getAddress());
             ps.setInt(3, address.getUserId());
             int result = ps.executeUpdate();
-            if (result > 0)
+            if (result > 0) {
+            	UserAddressDAO.id++;
                 return true;
+            }
             return false;
         } catch (SQLException e) {
             return false;
@@ -124,4 +128,8 @@ public class UserAddressDAO {
             cp.freeConnection(c);
         }
     }
+
+	public static int getNextId() {
+		return UserAddressDAO.id + 1;
+	}
 }

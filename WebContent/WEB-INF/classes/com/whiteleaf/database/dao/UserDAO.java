@@ -3,6 +3,7 @@ package com.whiteleaf.database.dao;
 import com.whiteleaf.database.entities.UserAddress;
 import com.whiteleaf.database.entities.UserCreditCards;
 import com.whiteleaf.database.entities.UserName;
+import com.whiteleaf.database.entities.UserPassword;
 import com.whiteleaf.database.util.User;
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,6 +18,8 @@ import java.util.List;
  * @author ikilbou1
  */
 public class UserDAO {
+	private static int userId = 0;
+
     public static List<User> getUsers() {
         List<User> users = new ArrayList<>();
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -74,14 +77,16 @@ public class UserDAO {
         }
     }
 
-    private static boolean addUser(UserName userName, UserAddress billingAddress,
+    public static boolean addUser(UserName userName, UserPassword password, UserAddress billingAddress,
             UserAddress shippingAddress, UserAddress emailAddress, UserCreditCards creditCard) {
-        ConnectionPool cp = ConnectionPool.getInstance();
-        Connection c = cp.getConnection();
-        PreparedStatement ps = null;
+        //ConnectionPool cp = ConnectionPool.getInstance();
+        //Connection c = cp.getConnection();
+        //PreparedStatement ps = null;
 
         if (!UserNamesDAO.addUserName(userName))
             return false;
+        if (!UserPasswordDAO.addPassword(password))
+        	return false;
         if (!UserAddressDAO.addUserBillingAddress(billingAddress))
             return false;
         if (!UserAddressDAO.addUserShippingAddress(shippingAddress))
@@ -90,6 +95,11 @@ public class UserDAO {
             return false;
         if (!UserCreditCardsDAO.addUsersCreditCard(creditCard))
             return false;
+        UserDAO.userId++;
         return true;
+    }
+    
+    public static int getNextUserId() {
+    	return UserDAO.userId + 1;
     }
 }

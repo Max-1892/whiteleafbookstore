@@ -2,11 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <c:import url="/includes/header.html"/>
 
-<%@page import="com.whiteleaf.database.dao.UserAddressDAO, com.whiteleaf.database.entities.User" %>
+<%@page import="com.whiteleaf.database.dao.UserAddressDAO, com.whiteleaf.database.util.User" %>
 <% User user = (User) session.getAttribute("user"); %>
-<% if (user != null && user.isValid()) { %>
+<% if (user != null && !user.equals("")) { %>
 	<article>
-		<h1>Welcome <%= user.getName() %>></h1>
 		<form action="/RegistrationServlet" method="get">
 		Name: <input type="text" name="name" placeholder="name" tabindex="1">
 		User Name:<input type="text" name="userName" placeholder="username" tabindex="2">

@@ -12,6 +12,7 @@ import java.sql.SQLException;
  * @author ikilbou1
  */
 public class UserPasswordDAO {
+	private static int id = 0;
     public static UserPassword getUserPassword(UserName user) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
@@ -76,4 +77,8 @@ public class UserPasswordDAO {
             cp.freeConnection(c);
         }
     }
+
+	public static int getNextId() {
+		return UserPasswordDAO.id + 1;
+	}
 }

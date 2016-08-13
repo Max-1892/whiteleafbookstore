@@ -15,6 +15,8 @@ import java.util.List;
  * @author ikilbou1
  */
 public class UserCreditCardsDAO {
+	private static int id = 0;
+
     public static List<UserCreditCards> getUsersCreditCards(UserName user) {
         ArrayList<UserCreditCards> creditCards = new ArrayList<>();
         ConnectionPool cp = ConnectionPool.getInstance();
@@ -116,4 +118,8 @@ public class UserCreditCardsDAO {
             cp.freeConnection(c);
         }
     }
+
+	public static int getNextId() {
+		return UserCreditCardsDAO.id + 1;
+	}
 }
