@@ -35,11 +35,10 @@ public class UserAddressDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM ? WHERE user_id=?";
+        String query = "SELECT * FROM " + table + " WHERE user_id=?";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, table);
-            ps.setInt(2, user.getId());
+            ps.setInt(1, user.getId());
             rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
@@ -76,12 +75,11 @@ public class UserAddressDAO {
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO ? (address) VALUES (?) WHERE user_id=?";
+        String query = "INSERT INTO " + table + " (address) VALUES (?) WHERE user_id=?";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, table);
-            ps.setString(2, address.getAddress());
-            ps.setInt(3, address.getUserId());
+            ps.setString(1, address.getAddress());
+            ps.setInt(2, address.getUserId());
             int result = ps.executeUpdate();
             if (result > 0) {
             	UserAddressDAO.id++;
@@ -112,12 +110,11 @@ public class UserAddressDAO {
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
 
-        String query = "UPDATE ? SET address=? WHERE user_id=?";
+        String query = "UPDATE " + table + " SET address=? WHERE user_id=?";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, table);
-            ps.setString(2, address.getAddress());
-            ps.setInt(3, address.getUserId());
+            ps.setString(1, address.getAddress());
+            ps.setInt(2, address.getUserId());
             int result = ps.executeUpdate();
             if (result > 0)
                 return true;

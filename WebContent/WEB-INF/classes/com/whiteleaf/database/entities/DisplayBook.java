@@ -9,7 +9,7 @@ public class DisplayBook {
 		String url = "/CartServlet?action=cart&amp;quantity=1&amp;productCode=" + book.getISBN();
 		
 		String content = "<h2>" + book.getTitle() + "</h2>"
-				+ "<img src=\""+ book.getIllustration() + "\">" 
+				+ "<img src=\"resources/images/"+ book.getIllustration() + "\">" 
 				+ "<p> By " + AuthorDAO.getAuthorFromId(book.getAuthorId()) + " | " + book.getISBN() + " | " + book.getDate().getYear() + "</p>"
 				+ "<p> $" + book.getPrice() + " | " + book.getPageCount() + " pages | " + PublisherDAO.getPublisherFromId(book.getPublisherId()) + "</p>"
 				+ "<p><b>" + CategoryDAO.getCategoryFromId(book.getCategoryId()) + "</b> " + book.getSummary() +"</p>"
