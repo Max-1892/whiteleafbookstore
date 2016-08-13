@@ -15,8 +15,9 @@
 				<li><a href="About Us">About Us</a></li>
 				<li id="banner_logo"><img src="/whiteleafbookstore/resources/images/whiteleaf_banner.png" height="50" /></li>
 			</ul>
-				<div id="searchForm"><form action="/SearchServlet" method="get">
+				<div id="searchForm"><form action="/whiteleafbookstore/SearchServlet" method="get">
 					<input id="searchBar" type="text" name="searchWord" placeholder="I'm looking for..." tabindex="1">
+					<input type="hidden" name="action" value="keyword">
 					<input type="submit" value="Search" style="position: absolute; left: -9999px; width: 1px; height: 1px;"
        tabindex="-1">
 					</form>
@@ -26,26 +27,26 @@
             <br/>
             <h2>Leaf through our pages...</h2>
             <ul>
-                <li><a href="/SearchServlet?category=nonFiction">Non-Fiction</a></li>
+                <li><a href="/SearchServlet?category=nonFiction&action=category">Non-Fiction</a></li>
                 <li><ul>
-                        <li><a href="/SearchServlet?category=arts">Arts</a></li>
-                        <li><a href="/SearchServlet?category=education">Education</a></li>
+                        <li><a href="/whiteleafbookstore/SearchServlet?category=arts&action=category">Arts</a></li>
+                        <li><a href="/whiteleafbookstore/SearchServlet?category=education&action=category">Education</a></li>
                     </ul>
                 </li>
-                <li><a href="/SearchServlet?category=fiction">Fiction</a></li>
+                <li><a href="/whiteleafbookstore/SearchServlet?category=fiction&action=category">Fiction</a></li>
                 <li><ul>
-                        <li><a href="/SearchServlet?category=literature">Literature</a></li>
-                        <li><a href="/SearchServlet?category=scifi">Science Fiction & Fantasy</a></li>
+                        <li><a href="/whiteleafbookstore/SearchServlet?category=literature&action=category">Literature</a></li>
+                        <li><a href="/whiteleafbookstore/SearchServlet?category=scifi&action=category">Science Fiction & Fantasy</a></li>
                     </ul>
                 </li>
-                <li><a href="/SearchServlet?category=childrens">Children's Books</a></li>
+                <li><a href="/whiteleafbookstore/SearchServlet?category=childrens&action=category">Children's Books</a></li>
                 <li><ul>
-                        <li><a href="/SearchServlet?category=picture">Picture Books</a></li>
-                        <li><a href="/SearchServlet?category=chapter">Chapter Books</a></li>
-                        <li><a href="/SearchServlet?category=nonFictionChildren">Non Fiction</a></li>
+                        <li><a href="/whiteleafbookstore/SearchServlet?category=picture&action=category">Picture Books</a></li>
+                        <li><a href="/whiteleafbookstore/SearchServlet?category=chapter&action=category">Chapter Books</a></li>
+                        <li><a href="/whiteleafbookstore/SearchServlet?category=nonFictionChildren&action=category">Non Fiction</a></li>
                     </ul>
                 </li>
-                <li><a href="/SearchServlet?category=topSeller">Top Sellers</a></li>
+                <li><a href="/whiteleafbookstore/SearchServlet?category=topSeller&action=category">Top Sellers</a></li>
             </ul>
         </section>
     </body>

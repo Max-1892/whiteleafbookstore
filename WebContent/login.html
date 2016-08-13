@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<table cellspacing="5" border="0">
-		<form action="j_security_check" METHOD="get">
-		<tr>
-			<td align="right">Username:</td>
-			<td><input type="text" name="j_username"></td>
-		</tr>
-		<tr>
-			<td align="right">Password:</td>
-			<td><input type="password" name="j_password"></td>
-		</tr>
-		<tr><td><input type="submit" value="Login"></td></tr>
-		</form>
-	</table>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Whiteleaf Bookstore</title>
+		<link rel="icon" href="/whiteleafbookstore/resources/images/whiteleaf_logo.png">
+		<link rel="stylesheet" href="/whiteleafbookstore/whiteleaf.css" type="text/css"/>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="browsing.jsp">Books</a></li>
+				<li><a href="cart.jsp">Cart</a></li>
+				<li><a href="/whiteleafbookstore/pages/account.jsp">Account</a></li>
+				<li><a href="About Us">About Us</a></li>
+				<li id="banner_logo"><a href="index.html"><img src="/whiteleafbookstore/resources/images/whiteleaf_banner.png" height="50"/></a></li>
+			</ul>
+				<div id="searchForm"><form action="/whiteleafbookstore/SearchServlet" method="get">
+					<input id="searchBar" type="text" name="searchWord" placeholder="I'm looking for..." tabindex="1">
+					<input type="submit" value="Search" style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+       tabindex="-1">
+					</form>
+				</div>
+		</nav>
+	<div style="text-align: center;">
+		<h2>Please login below!</h2>
+		<table align="center" cellspacing="5" border="0">
+			<form action="j_security_check" METHOD="get">
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" name="j_username"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="j_password"></td>
+			</tr>
+			<tr><td width="150"><input type="submit" value="Login" width="150"></td></tr>
+			</form>
+		</table>
+	</div>
 </body>
 </html>

@@ -25,7 +25,7 @@ import com.whiteleaf.database.entities.Publisher;
 /**
  * Servlet implementation class ResultsServlet
  */
-@WebServlet("/ResultsServlet")
+@WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
        
@@ -40,9 +40,6 @@ public class SearchServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        response.getWriter().append("Served at: ").append(request.getContextPath());
-
         //Get parameters
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
