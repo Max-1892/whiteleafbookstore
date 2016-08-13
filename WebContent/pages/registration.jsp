@@ -34,9 +34,9 @@
 		State:<input type="text" name="billingState"  tabindex="12"><br>
 		Zip Code: <input type="text" name="billingZipcode"  tabindex="13"><br>
 		Credit Card Provider: <br><input type="radio" name="creditCardProvider" value="VISA" tabindex="14">VISA<br>
-		 					  <input type="radio" name="creditCardProvider" value="Master_Card" tabindex="15">Master Card<br>
+		 					  <input type="radio" name="creditCardProvider" value="Mastercard" tabindex="15">Master Card<br>
 		 					  <input type="radio" name="creditCardProvider" value="Discover" tabindex="16">Discover<br>
-		 					  <input type="radio" name="creditCardProvider" value="American_Express" tabindex="17">American Express<br>
+		 					  <input type="radio" name="creditCardProvider" value="American Express" tabindex="17">American Express<br>
 		Credit Card Number: <input type="text" name="creditCard" placeholder="****-****-****-****" tabindex="18"><br>
 		Credit Card Expiration Date: <input type="text" name="creditCardExpDate" placeholder="MM/YYYY" tabindex="19"><br>
 		<input type="submit" value="Submit Registration">
