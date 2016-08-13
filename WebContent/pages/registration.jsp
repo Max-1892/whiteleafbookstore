@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ include file="header.html" %>
+<jsp:include page="header.html" />
 
 <%@ page import="com.whiteleaf.database.entities.*" %>
 <% if (request.getAttribute("errors") != null) { %>
