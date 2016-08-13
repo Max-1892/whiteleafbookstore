@@ -121,3 +121,10 @@ input#searchBar {
 #ccProviders {
 	margin-left: 4%;
 }
+#about_us {
+	padding-top: 2%;
+	text-align: center; 
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}

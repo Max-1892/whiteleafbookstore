@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Whiteleaf Bookstore</title>
+		<link rel="icon" href="/whiteleafbookstore/resources/images/whiteleaf_logo.png">
+		<link rel="stylesheet" href="/whiteleafbookstore/whiteleaf.css" type="text/css"/>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="/whiteleafbookstore/pages/browsing.jsp">Books</a></li>
+				<li><a href="/whiteleafbookstore/pages/cart.jsp">Cart</a></li>
+				<li><a href="/whiteleafbookstore/pages/account.jsp">Account</a></li>
+				<li><a href="about_us.html">About Us</a></li>
+				<li id="banner_logo"><a href="/whiteleafbookstore/index.html"><img src="/whiteleafbookstore/resources/images/whiteleaf_banner.png" height="50"/></a></li>
+			</ul>
+				<div id="searchForm"><form action="/whiteleafbookstore/SearchServlet" method="get">
+					<input id="searchBar" type="text" name="searchWord" placeholder="I'm looking for..." tabindex="1">
+					<input type="hidden" name="action" value="keyword">
+					<input type="submit" value="Search" style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+       tabindex="-1">
+					</form>
+				</div>
+		</nav>
+		<div id="about_us" >
+			Whiteleaf Bookstore is based out of Baltimore, Maryland and has been serving the independent book market for 10 years. 
+			We pride ourselves on connecting book lovers to quality, independent books that haven't been given the attention they
+			deserve. In addition to our large selection of books, we offer on-site readings, book signings, and IT support for 
+			your favorite e-reader.<br><br>
+			Our entire book collection is available for browsing and purchasing via our online store.<br><br>
+			Reach out to us via email or phone and pay us a visit next time you're in town!
+		</div>
+	</body>
+</html>
