@@ -26,6 +26,17 @@ nav li{
 	padding-left: 2%;
 	float: left;
 }
+#banner_logo a {
+	margin-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+#banner_logo a:hover {
+    background-color: #000;
+}
 footer{
 	text-size:1em;
 
