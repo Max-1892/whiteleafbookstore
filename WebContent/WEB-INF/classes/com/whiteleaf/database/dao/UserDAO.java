@@ -1,5 +1,6 @@
 package com.whiteleaf.database.dao;
 
+import com.whiteleaf.database.entities.CreditCardProvider;
 import com.whiteleaf.database.entities.UserAddress;
 import com.whiteleaf.database.entities.UserCreditCards;
 import com.whiteleaf.database.entities.UserName;
@@ -10,6 +11,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,7 +101,59 @@ public class UserDAO {
         UserDAO.userId++;
         return true;
     }
-    
+
+    public static boolean addUser(String userName, String userPassword,
+            String billingAddress, String shippingAddress, String emailAddress,
+            String cardNumber, String cardProvider, String expirationDate) {
+        UserName name = UserNamesDAO.addUserName(userName);
+        if (name != null) {
+            // add password
+            UserPassword password = new UserPassword();
+            password.setUserId(name.getId());
+            password.setPassword(userPassword);
+            if (!UserPasswordDAO.addPassword(password))
+                return false;
+            // add billing
+            UserAddress billing = new UserAddress();
+            billing.setUserId(name.getId());
+            billing.setAddress(billingAddress);
+            if (!UserAddressDAO.addUserBillingAddress(billing))
+                return false;
+            // add shipping
+            UserAddress shipping = new UserAddress();
+            shipping.setUserId(name.getId());
+            shipping.setAddress(shippingAddress);
+            if (!UserAddressDAO.addUserShippingAddress(shipping))
+                return false;
+            // add e-mail
+            UserAddress email = new UserAddress();
+            email.setUserId(name.getId());
+            email.setAddress(emailAddress);
+            if (!UserAddressDAO.addUserEmailAddress(email))
+                return false;
+            // add credit card
+            UserCreditCards creditCard = new UserCreditCards();
+            creditCard.setUserId(name.getId());
+            CreditCardProvider provider = CreditCardProviderDAO.getCreditCardProviderByName(cardProvider);
+            creditCard.setProviderId(provider.getId());
+            // parse the date string into sql Date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
+            Date date;
+            try {
+                java.util.Date temp = dateFormat.parse(expirationDate);
+                date = new Date(temp.getTime());
+            } catch (ParseException ex) {
+                return false;
+            }
+            creditCard.setExpirationDate(date);
+            creditCard.setCardNumber(cardNumber);
+            if (!UserCreditCardsDAO.addUsersCreditCard(creditCard))
+                return false;
+            return true;
+        }
+        return false;
+    }
+
     public static int getNextUserId() {
     	return UserDAO.userId + 1;
     }

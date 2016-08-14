@@ -41,7 +41,7 @@ public class UserPasswordDAO {
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
 
-        String query = "INSERT user_passwords (user_id, password)) VALUES (?, ?)";
+        String query = "INSERT INTO user_passwords (user_id, password) VALUES (?, ?)";
         try {
             ps = c.prepareStatement(query);
             ps.setInt(1, password.getUserId());

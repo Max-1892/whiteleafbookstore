@@ -75,11 +75,11 @@ public class UserAddressDAO {
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
 
-        String query = "INSERT INTO " + table + " (address) VALUES (?) WHERE user_id=?";
+        String query = "INSERT INTO " + table + " (user_id, address) VALUES (?, ?)";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, address.getAddress());
-            ps.setInt(2, address.getUserId());
+            ps.setInt(1, address.getUserId());
+            ps.setString(2, address.getAddress());
             int result = ps.executeUpdate();
             if (result > 0) {
             	UserAddressDAO.id++;

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/whiteleafbookstore">
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" logAbandoned="true" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/whiteleaf" password="password" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/whiteleaf?autoReconnect=true" username="root"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver"
+            logAbandoned="true" maxActive="100" maxIdle="30" maxWait="10000"
+            name="jdbc/whiteleaf" password="password" removeAbandoned="true"
+            removeAbandonedTimeout="60" type="javax.sql.DataSource"
+            url="jdbc:mysql://localhost:3306/whiteleaf?autoReconnect=true"
+            username="root"/>
+  <Realm className="org.apache.catalina.realm.JDBCRealm" debug="99"
+        driverName="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/whiteleaf?autoReconnect=true"
+        connectionName="root"  connectionPassword="password"
+        userTable="WHITELEAF_USERS" userNameCol="name" userCredCol="password"
+        userRoleTable="WHITELEAF_USER_ROLES" roleNameCol="role" />
 </Context>
