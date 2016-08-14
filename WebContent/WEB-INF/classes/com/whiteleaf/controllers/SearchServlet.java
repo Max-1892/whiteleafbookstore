@@ -59,7 +59,7 @@ public class SearchServlet extends HttpServlet {
                 resultDisplay = resultDisplay + html;
             }
             request.setAttribute("results", resultDisplay);
-            url = "/results.jsp";
+            url = "/pages/results.jsp";
         }
         //For search box result list 
         else if(action.equals("keyword")){
@@ -73,16 +73,16 @@ public class SearchServlet extends HttpServlet {
                 resultDisplay = resultDisplay + html;
             }
             request.setAttribute("results", resultDisplay);
-            url = "/results.jsp";
+            url = "/pages/results.jsp";
         }
         //For searching for books by ISBN
         else if(action.equals("ISBN")){
             Book book = BooksDAO.getBookByISBN(searchWord);
             request.setAttribute("book", book);
-            url = "/details.jsp";
+            url = "/pages/details.jsp";
         }
         else{
-            url = "/error.jsp";
+            url = "/pages/error.jsp";
         }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

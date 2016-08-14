@@ -53,11 +53,10 @@ public class CategoryDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT * FROM categories WHERE ?=?";
+        String query = "SELECT * FROM categories WHERE " + columnName + "=?";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, columnName);
-            ps.setString(2, columnValue);
+            ps.setString(1, columnValue);
             rs = ps.executeQuery();
             if (rs != null) {
                 rs.next();

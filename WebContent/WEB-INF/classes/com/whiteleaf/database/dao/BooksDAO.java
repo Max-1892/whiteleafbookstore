@@ -119,14 +119,14 @@ public class BooksDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT title, author_id, ISBN, publication_date,"
-                    + " publisher_id, page_count, summary, illustration, category_id"
+        String query = "SELECT id, title, author_id, ISBN, publication_date,"
+                    + " publisher_id, page_count, summary, illustration,"
+                    + " category_id, price"
                     + " FROM books"
-                    + " WHERE ?=?";
+                    + " WHERE " + columnName + "=?";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, columnName);
-            ps.setString(2, columnValue);
+            ps.setString(1, columnValue);
             rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
@@ -163,8 +163,9 @@ public class BooksDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String query = "SELECT title, author_id, ISBN, publication_date,"
-                    + " publisher_id, page_count, summary, illustration, category_id"
+        String query = "SELECT id, title, author_id, ISBN, publication_date,"
+                    + " publisher_id, page_count, summary, illustration,"
+                    + " category_id, price"
                     + " FROM books"
                     + " WHERE title LIKE ?";
         try {
@@ -206,8 +207,8 @@ public class BooksDAO {
 
         String query = "INSERT INTO BOOKS (title, author_id, isbn,"
                     + " publication_date, publisher_id, page_count, summary,"
-                    + " illustration, category)"
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    + " illustration, category, price)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = c.prepareStatement(query);
             ps.setString(1, book.getTitle());
@@ -219,6 +220,7 @@ public class BooksDAO {
             ps.setString(7, book.getSummary());
             ps.setString(8, book.getIllustration());
             ps.setString(9, String.valueOf(book.getCategoryId()));
+            ps.setString(10, String.valueOf(book.getPrice()));
             int result = ps.executeUpdate();
             if (result > 0)
                 return true;
@@ -235,7 +237,7 @@ public class BooksDAO {
         Connection c = cp.getConnection();
         PreparedStatement ps = null;
 
-        String query = "DELETE FROM books WHERE isbn = ?";
+        String query = "DELETE FROM books WHERE isbn=?";
         try {
             ps = c.prepareStatement(query);
             ps.setString(1, ISBN);

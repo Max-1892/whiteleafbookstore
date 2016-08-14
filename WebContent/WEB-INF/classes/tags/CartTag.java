@@ -19,6 +19,8 @@ public class CartTag extends BodyTagSupport {
     @Override
     public int doStartTag() {
         Cart cart = (Cart) pageContext.findAttribute("cart");
+        if (cart == null)
+            return SKIP_BODY;
         lineItems = cart.getItems();
         if (lineItems.size() <= 0) {
             return SKIP_BODY;
