@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="ISO-8859-1">
-    <title>Whiteleaf Bookstore</title>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Whiteleaf Bookstore</title>
 		<link rel="icon" href="/whiteleafbookstore/resources/images/whiteleaf_logo.png">
-	<link rel="stylesheet" href="whiteleaf.css" type="text/css"/>
-</head>
-</head>
-<body>
+		<link rel="stylesheet" href="/whiteleafbookstore/whiteleaf.css" type="text/css"/>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="/whiteleafbookstore/pages/browsing.jsp">Books</a></li>
+				<li><a href="/whiteleafbookstore/pages/cart.jsp">Cart</a></li>
+				<li><a href="/whiteleafbookstore/pages/account.jsp">Account</a></li>
+				<li><a href="/whiteleafbookstore/about_us.html">About Us</a></li>
+				<li id="banner_logo"><img src="/whiteleafbookstore/resources/images/whiteleaf_banner.png" height="50" /></li>
+			</ul>
+				<div id="searchForm"><form action="/whiteleafbookstore/SearchServlet" method="get">
+					<input id="searchBar" type="text" name="searchWord" placeholder="I'm looking for..." tabindex="1">
+					<input type="hidden" name="action" value="keyword">
+					<input type="submit" value="Search" style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+       tabindex="-1">
+					</form>
+				</div>
+		</nav>
 	<div class="error">
 		Inputted username or password is incorrect
 	</div>
