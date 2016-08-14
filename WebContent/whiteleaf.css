@@ -64,6 +64,7 @@ section{
         background-color: red;
 }
 .error {
+		margin-top: 2%;
         background-color: #FBE3E4;
         color: #8C2523;
         text-align: center;

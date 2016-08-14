@@ -38,7 +38,7 @@ public class CreditCardProviderDAO {
         }
     }
 
-    private static CreditCardProvider getCreditCardProviderById(int providerId) {
+    public static CreditCardProvider getCreditCardProviderById(int providerId) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
         PreparedStatement ps = null;

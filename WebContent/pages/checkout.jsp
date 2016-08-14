@@ -22,34 +22,38 @@
             	<th>Unit Cost</th>
             </tr>
             <% ArrayList<LineItem> items = cart.getItems();
-            	BigDecimal temp = new BigDecimal(0);
-            	temp.setScale(2);
                for (LineItem item : items) { 
-            	   total = total.add(item.getBook().getPrice().multiply(new BigDecimal(item.getQuantity())));
+            	   if (item.getQuantity() > 0) {
+            	       total = total.add(item.getBook().getPrice().multiply(new BigDecimal(item.getQuantity())));
+            	   }
             %>
+            <% if (item.getQuantity() > 0) { %>
             <tr>
                 <td class="title_col" align="center"><%= item.getBook().getTitle() + " by " + AuthorDAO.getAuthorFromId(item.getBook().getAuthorId()).getName() %></td>
                 <td class="quantity_col" align="center"><%= item.getQuantity() %>
                 <td class="unit_cost_col" align="center">$<%= item.getBook().getPrice() %></td>
                 <td align="center">
-                	<form action="UpdateCart" method="post">
+                	<form action="/whiteleafbookstore/UpdateCart" method="post">
                 		<input type="hidden" name="action" value="add">
-                		<input type="hidden" name="lineItem" value="<%= item %>">
+                		<input type="hidden" name="isbn" value="<%= item.getBook().getISBN() %>">
                 		<input type="submit" value="Add">
                 	</form>
                 </td>
                 <td align="center">
-                	<form action="UpdateCart" method="post">
+                	<form action="/whiteleafbookstore/UpdateCart" method="post">
                 		<input type="hidden" name="action" value="remove">
-                		<input type="hidden" name="lineItem" value="<%= item %>">
+                		<input type="hidden" name="isbn" value="<%= item.getBook().getISBN() %>">
                 		<input type="submit" value="Remove">
                 	</form>
                 </td>
             </tr>
             <% } %>
+            <% } 
+               request.getSession().setAttribute("total", total.setScale(2));
+            %>
         </table>
         <div id="total_cost" style="margin-top: 3%; margin-left: 70%; margin-bottom: 3%;">Total: $<%= total.setScale(2) %></div>
-        <form action="confirmOrder.jsp" method="post">
-        	<input style="margin-left: 30%; width: 50%;" type="submit" value="Proceed to Billing">
+        <form action="/whiteleafbookstore/pages/confirmOrder.jsp" method="post">
+        	<input style="margin-left: 30%; width: 30%;" type="submit" value="Proceed to Billing">
         </form>
 <% } %>

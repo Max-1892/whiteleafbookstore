@@ -2,8 +2,12 @@
     pageEncoding="ISO-8859-1"%>
 <jsp:include page="header.html" />
 
-<%@ page import="com.whiteleaf.database.entities.*" %>
+<%@ page import="com.whiteleaf.database.entities.Cart" %>
 
+<% Cart cart = (Cart) request.getSession().getAttribute("cart");
+   if (cart != null && cart.getCount() <= 0) { %>
+	<article><div style="margin-top: 3%;">You don't have books in your cart! Keep on shopping!</div></article>
+<% } else { %>
 <table style="width: 80%; align: center; margin-left: auto; margin-right: auto; margin-top: 2%;">
     <tr>
         <th>Title</th>
@@ -16,7 +20,7 @@
 <mma:cart>
     <tr>
         <td id="productTitle" align="center">${productTitle}</td>
-        <td align="center">${productPrice}</td>
+        <td align="center">$${productPrice}</td>
         <td align="center">${quantity}</td>
         <td align="center">${total}</td>
     </tr>
@@ -36,5 +40,6 @@
 		</form>
 	</tr>
 </table>
+<% } %>
 
 </body>
