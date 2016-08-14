@@ -41,6 +41,31 @@ public class UserNamesDAO {
         }
     }
 
+    public static UserName getUserByName(String userName) {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection c = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM user_names WHERE name=?";
+        try {
+            ps = c.prepareStatement(query);
+            ps.setString(1, userName);
+            rs = ps.executeQuery();
+            if (rs != null) {
+                rs.first();
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                return new UserName(id, name);
+            }
+            return null;
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            cp.freeConnection(c);
+        }
+    }
+
     public static boolean addUserName(UserName user) {
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
@@ -56,6 +81,26 @@ public class UserNamesDAO {
             return false;
         } catch (SQLException e) {
             return false;
+        } finally {
+            cp.freeConnection(c);
+        }
+    }
+
+    public static UserName addUserName(String userName) {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection c = cp.getConnection();
+        PreparedStatement ps = null;
+
+        String query = "INSERT INTO user_names (name) VALUES (?)";
+        try {
+            ps = c.prepareStatement(query);
+            ps.setString(1, userName);
+            int result = ps.executeUpdate();
+            if (result > 0)
+                return getUserByName(userName);
+            return null;
+        } catch (SQLException e) {
+            return null;
         } finally {
             cp.freeConnection(c);
         }

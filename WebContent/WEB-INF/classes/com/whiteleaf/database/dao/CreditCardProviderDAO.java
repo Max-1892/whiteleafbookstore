@@ -13,7 +13,7 @@ import java.util.List;
  * @author ikilbou1
  */
 public class CreditCardProviderDAO {
-    private static List<CreditCardProvider> getCreditCardProviders() {
+    public static List<CreditCardProvider> getCreditCardProviders() {
         ArrayList<CreditCardProvider> providers = new ArrayList<>();
         ConnectionPool cp = ConnectionPool.getInstance();
         Connection c = cp.getConnection();
@@ -48,6 +48,29 @@ public class CreditCardProviderDAO {
         try {
             ps = c.prepareStatement(query);
             ps.setInt(1, providerId);
+            rs = ps.executeQuery();
+            if (rs != null) {
+                rs.next();
+                return new CreditCardProvider(rs.getInt("id"), rs.getString("name"));
+            }
+            return null;
+        } catch (SQLException e) {
+            return null;
+        } finally {
+            cp.freeConnection(c);
+        }
+    }
+
+    public static CreditCardProvider getCreditCardProviderByName(String providerName) {
+        ConnectionPool cp = ConnectionPool.getInstance();
+        Connection c = cp.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "SELECT * FROM credit_card_providers WHERE name LIKE ?";
+        try {
+            ps = c.prepareStatement(query);
+            ps.setString(1, "%" + providerName + "%");
             rs = ps.executeQuery();
             if (rs != null) {
                 rs.next();

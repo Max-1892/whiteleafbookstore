@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `whiteleaf` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `whiteleaf`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: whiteleaf
@@ -397,6 +395,53 @@ LOCK TABLES `user_shipping_address` WRITE;
 INSERT INTO `user_shipping_address` VALUES (1,2,'123 Onetwothree St., Baltimore, MD. 21117');
 /*!40000 ALTER TABLE `user_shipping_address` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `whiteleaf_user_roles`
+--
+
+DROP TABLE IF EXISTS `whiteleaf_user_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `whiteleaf_user_roles` (
+  `NAME` varchar(20) NOT NULL,
+  `ROLE` varchar(45) NOT NULL,
+  PRIMARY KEY (`NAME`,`ROLE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `whiteleaf_user_roles`
+--
+
+LOCK TABLES `whiteleaf_user_roles` WRITE;
+/*!40000 ALTER TABLE `whiteleaf_user_roles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `whiteleaf_user_roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `whiteleaf_users`
+--
+
+DROP TABLE IF EXISTS `whiteleaf_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `whiteleaf_users` (
+  `NAME` varchar(20) NOT NULL,
+  `PASSWORD` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`NAME`),
+  UNIQUE KEY `NAME_UNIQUE` (`NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `whiteleaf_users`
+--
+
+LOCK TABLES `whiteleaf_users` WRITE;
+/*!40000 ALTER TABLE `whiteleaf_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `whiteleaf_users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -407,4 +452,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-02 22:04:53
+-- Dump completed on 2016-08-13 16:32:48

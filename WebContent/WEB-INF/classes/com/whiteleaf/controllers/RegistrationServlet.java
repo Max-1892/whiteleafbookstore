@@ -15,16 +15,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.whiteleaf.database.util.User;
+import com.whiteleaf.database.dao.CreditCardProviderDAO;
 import com.whiteleaf.database.dao.PublisherDAO;
 import com.whiteleaf.database.dao.UserAddressDAO;
 import com.whiteleaf.database.dao.UserCreditCardsDAO;
 import com.whiteleaf.database.dao.UserDAO;
 import com.whiteleaf.database.dao.UserNamesDAO;
 import com.whiteleaf.database.dao.UserPasswordDAO;
+import com.whiteleaf.database.dao.WhiteleafUserRolesDAO;
 import com.whiteleaf.database.entities.UserAddress;
 import com.whiteleaf.database.entities.UserCreditCards;
 import com.whiteleaf.database.entities.UserName;
 import com.whiteleaf.database.entities.UserPassword;
+import com.whiteleaf.database.dao.WhiteleafUsersDAO;
 
 /**
  * Servlet implementation class RegistrationServlet
@@ -86,48 +89,69 @@ public class RegistrationServlet extends HttpServlet {
 			goodRegistration = false;
 		}
 		// Validate username is available
-		String registratedUsername = paramStore.get("userName");
-		for (UserName username : UserNamesDAO.getUserNames()) {
-			if (username.getName().equals(registratedUsername)) {
-				errors.add("Username is already taken");
-				goodRegistration = false;
-				break;
-			}
-		}
+//		String registratedUsername = paramStore.get("userName");
+//		for (UserName username : UserNamesDAO.getUserNames()) {
+//			if (username.getName().equals(registratedUsername)) {
+//				errors.add("Username is already taken");
+//				goodRegistration = false;
+//				break;
+//			}
+//		}
 		
 		StringBuilder url = new StringBuilder(); 
 		if (goodRegistration) {
-			int userId = UserDAO.getNextUserId();
-			UserName username = new UserName(userId, paramStore.get("userName"));
-			UserPassword password = new UserPassword(
-					UserPasswordDAO.getNextId(), userId, paramStore.get("password"));
-			UserAddress billingAddress = new UserAddress(
-					UserAddressDAO.getNextId(), userId, 
-					paramStore.get("billingAddress") + "," +
+//			int userId = UserDAO.getNextUserId();
+//			UserName username = new UserName(userId, paramStore.get("userName"));
+//			UserPassword password = new UserPassword(
+//					UserPasswordDAO.getNextId(), userId, paramStore.get("password"));
+//			UserAddress billingAddress = new UserAddress(
+//					UserAddressDAO.getNextId(), userId, 
+//					paramStore.get("billingAddress") + "," +
+//					paramStore.get("billingCity") + "," +
+//					paramStore.get("billingState") + "," +
+//					paramStore.get("billingZipcode"));
+//			UserAddress shippingAddress = new UserAddress(
+//					UserAddressDAO.getNextId() + 1, userId, 
+//					paramStore.get("shippingAddress") + "," +
+//					paramStore.get("shippingCity") + "," +
+//					paramStore.get("shippingState") + "," +
+//					paramStore.get("shippingZipcode"));
+//			// email address
+//			UserAddress emailAddress = new UserAddress(UserAddressDAO.getNextId() + 2,
+//					userId, paramStore.get("emailAddress"));
+//			// credit card
+//			String[] expDateParse = paramStore.get("creditCardExpDate").split("/");
+//			Date expDate = new Date(Integer.parseInt(expDateParse[1]), 
+//					Integer.parseInt(expDateParse[0]), 1);
+//			UserCreditCards creditCard = new UserCreditCards(
+//					UserCreditCardsDAO.getNextId(), userId,
+//					PublisherDAO.getPublisherByName(paramStore.get("creditCardProvider")).getId(),
+//					paramStore.get("creditCard"), expDate);
+			// Add user to DB
+//                        if (UserDAO.addUser(
+//					username, password, billingAddress, shippingAddress, emailAddress, creditCard)) {
+//				url.append("login.html");
+//			} else {
+//				errors.add("An error occurred during registration, please try again");
+//				request.setAttribute("errors", errors);
+//				url.append("/pages/registration.jsp");
+//			}
+			String billing = paramStore.get("billingAddress") + "," +
 					paramStore.get("billingCity") + "," +
 					paramStore.get("billingState") + "," +
-					paramStore.get("billingZipcode"));
-			UserAddress shippingAddress = new UserAddress(
-					UserAddressDAO.getNextId() + 1, userId, 
-					paramStore.get("shippingAddress") + "," +
+					paramStore.get("billingZipcode");
+                        String shipping = paramStore.get("shippingAddress") + "," +
 					paramStore.get("shippingCity") + "," +
 					paramStore.get("shippingState") + "," +
-					paramStore.get("shippingZipcode"));
-			// email address
-			UserAddress emailAddress = new UserAddress(UserAddressDAO.getNextId() + 2,
-					userId, paramStore.get("emailAddress"));
-			// credit card
-			String[] expDateParse = paramStore.get("creditCardExpDate").split("/");
-			Date expDate = new Date(Integer.parseInt(expDateParse[1]), 
-					Integer.parseInt(expDateParse[0]), 1);
-			UserCreditCards creditCard = new UserCreditCards(
-					UserCreditCardsDAO.getNextId(), userId,
-					PublisherDAO.getPublisherByName(paramStore.get("creditCardProvider")).getId(),
-					paramStore.get("creditCard"), expDate);
-			// Add user to DB
-			if (UserDAO.addUser(
-					username, password, billingAddress, shippingAddress, emailAddress, creditCard)) {
-				url.append("login.html");
+					paramStore.get("shippingZipcode");
+                        boolean userAdd = UserDAO.addUser(paramStore.get("userName"),
+                                paramStore.get("password"), billing, shipping,
+                                paramStore.get("email"), paramStore.get("creditCard"),
+                                paramStore.get("creditCardProvider"), paramStore.get("creditCardExpDate"));
+                        boolean whiteleafAdd = WhiteleafUsersDAO.addWhiteleafUser(paramStore.get("userName"), paramStore.get("password"));
+                        boolean roleAdd = WhiteleafUserRolesDAO.addWhiteleafUserRole(paramStore.get("userName"), "user");
+			if (userAdd && whiteleafAdd && roleAdd) {
+				url.append("/login.html");
 			} else {
 				errors.add("An error occurred during registration, please try again");
 				request.setAttribute("errors", errors);

@@ -48,7 +48,7 @@ public class PublisherDAO {
         String query = "SELECT * FROM publishers WHERE publisher LIKE ?";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, publisherName);
+            ps.setString(1, "%" + publisherName + "%");
             rs = ps.executeQuery();
             if (rs != null) {
                 rs.next();
