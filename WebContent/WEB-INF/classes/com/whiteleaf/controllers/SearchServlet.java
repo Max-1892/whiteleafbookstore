@@ -81,6 +81,19 @@ public class SearchServlet extends HttpServlet {
             request.setAttribute("book", book);
             url = "/pages/details.jsp";
         }
+        else if(action.equals("browse")) {
+            ArrayList<Book> books = (ArrayList<Book>) BooksDAO.getBooks();
+            //Format results
+            for (Book book : books) {
+                Author author = AuthorDAO.getAuthorFromId(book.getAuthorId());
+                Category category = CategoryDAO.getCategoryFromId(book.getCategoryId());
+                Publisher publisher = PublisherDAO.getPublisherFromId(book.getPublisherId());
+                String html = DisplayBook.displayBook(book);
+                resultDisplay = resultDisplay + html;
+            }
+            request.setAttribute("results", resultDisplay);
+            url = "/pages/results.jsp";
+        }
         else{
             url = "/pages/error.jsp";
         }
