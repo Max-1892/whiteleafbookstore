@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<c:import url="/includes/header.html"/>
+<jsp:include page="header.html" />
 
 <%@ page import="com.whiteleaf.database.entities.Book" %>
 <%@ page import="com.whiteleaf.database.dao.AuthorDAO" %>

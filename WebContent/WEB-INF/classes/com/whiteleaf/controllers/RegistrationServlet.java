@@ -86,14 +86,14 @@ public class RegistrationServlet extends HttpServlet {
 			goodRegistration = false;
 		}
 		// Validate username is available
-		/*String registratedUsername = paramStore.get("userName");
+		String registratedUsername = paramStore.get("userName");
 		for (UserName username : UserNamesDAO.getUserNames()) {
 			if (username.getName().equals(registratedUsername)) {
 				errors.add("Username is already taken");
 				goodRegistration = false;
 				break;
 			}
-		}*/
+		}
 		
 		StringBuilder url = new StringBuilder(); 
 		if (goodRegistration) {

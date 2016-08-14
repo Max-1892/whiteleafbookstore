@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Whiteleaf Bookstore</title>
+		<link rel="icon" href="/whiteleafbookstore/resources/images/whiteleaf_logo.png">
 		<link rel="stylesheet" href="/whiteleafbookstore/whiteleaf.css" type="text/css"/>
 	</head>
 	<body>
@@ -14,7 +15,8 @@
 				<li><a href="/whiteleafbookstore/about_us.html">About Us</a></li>
 				<li id="banner_logo"><a href="/whiteleafbookstore/index.html"><img src="/whiteleafbookstore/resources/images/whiteleaf_banner.png" height="50"/></a></li>
 			</ul>
-				<div id="searchForm"><form action="/SearchServlet" method="get">
+				<div id="searchForm"><form action="/whiteleafbookstore/SearchServlet" method="get">
+					<input type="hidden" name="action" value="keyword">
 					<input id="searchBar" type="text" name="searchWord" placeholder="I'm looking for..." tabindex="1">
 					<input type="submit" value="Search" style="position: absolute; left: -9999px; width: 1px; height: 1px;"
        tabindex="-1">

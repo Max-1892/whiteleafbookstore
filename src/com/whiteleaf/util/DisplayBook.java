@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 
 public class DisplayBook {
     public static String displayBook(Book book, Author author, Category category, Publisher publisher){
-        String url = "/CartServlet?action=cart&amp;quantity=1&amp;productCode=" + book.getISBN();
+        String url = "/whiteleafbookstore/CartServlet?action=cart&amp;quantity=1&amp;productCode=" + book.getISBN();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
         String publicationDate = dateFormat.format(book.getDate());

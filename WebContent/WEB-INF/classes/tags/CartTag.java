@@ -43,7 +43,7 @@ public class CartTag extends BodyTagSupport {
         pageContext.setAttribute(
                 "productCode", p.getISBN());
         pageContext.setAttribute(
-                "productDescription", p.getTitle());
+                "productTitle", p.getTitle());
         pageContext.setAttribute(
                 "productPrice", p.getPrice());
         pageContext.setAttribute(

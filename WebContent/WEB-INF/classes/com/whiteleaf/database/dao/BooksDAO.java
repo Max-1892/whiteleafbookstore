@@ -170,7 +170,7 @@ public class BooksDAO {
                     + " WHERE title LIKE ?";
         try {
             ps = c.prepareStatement(query);
-            ps.setString(1, searchTitle);
+            ps.setString(1, '%' + searchTitle + '%');
             rs = ps.executeQuery();
             if (rs != null) {
                 while (rs.next()) {

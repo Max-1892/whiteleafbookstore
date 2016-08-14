@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<c:import url="/includes/header.html"/>
+<jsp:include page="header.html" />
 
 <h1>Your order has been completed.</h1>
 <table>

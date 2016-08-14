@@ -2,6 +2,7 @@ package com.whiteleaf.controllers;
 
 import java.io.*;
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.whiteleaf.database.dao.BooksDAO;
@@ -9,9 +10,15 @@ import com.whiteleaf.database.entities.Book;
 import com.whiteleaf.database.entities.Cart;
 import com.whiteleaf.database.entities.LineItem;
 
+@WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
 
-    @Override
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext sc = getServletContext();
         
@@ -22,9 +29,9 @@ public class CartServlet extends HttpServlet {
         }
 
         // perform action and set URL to appropriate page
-        String url = "/index.jsp";
+        String url = "/whiteleafbookstore/index.html";
         if (action.equals("shop")) {
-            url = "/index.jsp";    // the "index" page
+            url = "/whiteleafbookstore/index.html";
         } 
         else if (action.equals("cart")) {
             String productCode = request.getParameter("productCode");
@@ -48,25 +55,44 @@ public class CartServlet extends HttpServlet {
                 quantity = 1;
             }
 
-            Book book = BooksDAO.getBookByISBN(productCode);
+            // Check if book is already in cart, if so increase quantity
+            boolean updatedCart = false;
+            for (LineItem item : cart.getItems()) {
+            	if (item.getBook().getISBN().equals(productCode)) {
+            		item.setQuantity(item.getQuantity() + 1);
+            		updatedCart = true;
+            		break;
+            	}
+            }
+            
+            if (!updatedCart) {
+            	Book book = BooksDAO.getBookByISBN(productCode);
 
-            LineItem lineItem = new LineItem();
-            lineItem.setBook(book);
-            lineItem.setQuantity(quantity);
-            if (quantity > 0) {
-                cart.addItem(lineItem);
-            } else if (quantity == 0) {
-                cart.removeItem(lineItem);
+            	LineItem lineItem = new LineItem();
+            	lineItem.setBook(book);
+            	lineItem.setQuantity(quantity);
+            	if (quantity > 0) {
+            	    cart.addItem(lineItem);
+            	} else if (quantity == 0) {
+            	    cart.removeItem(lineItem);
+            	}
             }
 
             session.setAttribute("cart", cart);
-            url = "/cart.jsp";
+            url = "/pages/cart.jsp";
         }
         else if (action.equals("checkout")) {
-            url = "/checkout.jsp";
+            url = "/pages/checkout.jsp";
         }
 
         sc.getRequestDispatcher(url)
                 .forward(request, response);
     }
+	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
 }
